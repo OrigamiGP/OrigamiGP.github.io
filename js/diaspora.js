@@ -476,7 +476,7 @@ $(function() {
                         $('#pager').remove()
                     }
                     var tempScrollTop = $(window).scrollTop();
-                    $('#primary').append($(data).find('.post'))
+                    $('#primary').append($(data).find('.post-wrapper'))
                     $(window).scrollTop(tempScrollTop + 100);
                     Diaspora.loaded()
                     $('html,body').animate({ scrollTop: tempScrollTop + 400 }, 500);
@@ -636,6 +636,49 @@ $(function() {
         comment.click();
     }
 		
-    console.log("%c Github %c","background:#24272A; color:#ffffff","","https://github.com/Fechin/hexo-theme-diaspora")
-})
+	    console.log("%c Github %c","background:#24272A; color:#ffffff","","https://github.com/Fechin/hexo-theme-diaspora")
+
+		// 文章筛选功能
+		$('.hero-btn').on('click', function(e) {
+			e.preventDefault();
+			var filter = $(this).data('filter');
+			// 更新按钮激活状态
+			$('.hero-btn').removeClass('active');
+			$(this).addClass('active');
+			// 筛选文章
+			if (filter === 'all') {
+				$('.post-wrapper').show();
+			} else {
+				$('.post-wrapper').each(function() {
+					var tags = $(this).data('tags') || '';
+					if (tags.indexOf(filter) !== -1) {
+						$(this).show();
+					} else {
+						$(this).hide();
+					}
+				});
+			}
+		});
+	})
+
+// 返回顶部按钮 — 仅首页显示，滑到底部才出现
+$(function() {
+    var $btn = $('.scroll-top-btn');
+    if (!$('#container').length) { $btn.remove(); return; }
+    var timer;
+    $(window).on('scroll', function() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+            var nearBottom = $(document).height() - $(window).height() - $(window).scrollTop() < 300;
+            if (nearBottom) {
+                $btn.addClass('show');
+            } else {
+                $btn.removeClass('show');
+            }
+        }, 200);
+    });
+    $btn.on('click', function() {
+        $('html,body').animate({scrollTop: 0}, 500);
+    });
+});
 
