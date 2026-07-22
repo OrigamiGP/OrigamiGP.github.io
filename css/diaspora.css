@@ -408,3 +408,14 @@ pre .keyword,pre .javascript .function {color:#cc99cc;}
   #single .article .main {padding:16px;}
   .image-logo {width:60px;height:26px;}
 }
+/* 友链 */
+#friends {text-align:center;padding:60px 20px 100px;position:relative;}
+.friends-inner {display:inline-block;}
+.friends-title {color:rgba(255,255,255,1);font-size:28px;letter-spacing:6px;margin-bottom:6px;text-shadow:4px 0 0 rgba(0,0,0,0.8);}
+.friends-subtitle {display:flex;justify-content:space-between;width:56px;margin:0 auto 14px;font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+.friends-divider {width:160px;height:1px;background:rgba(255,255,255,1);margin:0 auto 16px;}
+.friends-list a {display:inline-block;color:rgba(255,255,255,1);font-size:17px;text-decoration:none;transition:color 0.2s;}
+.friends-list a:hover {color:#7ec8e3;}
+@media screen and (max-width:480px) {
+  #friends {padding:40px 16px 80px;}
+}
